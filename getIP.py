@@ -36,7 +36,7 @@ if confIpt == 'y' or confIpt == 'Y' or confIpt == 'Yes' or confIpt == 'YES':
     for i in re.findall(''' (.+)<br />''', r._content, re.I):
         tempRules.insert(6,'-A INPUT -s ' + i + ' -j VIETNAM-INPUT\n')
         tempRules.insert(6,'-A FORWARD -s ' + i + ' -j VIETNAM-INPUT\n')
-        ipt = file('iptables', 'wt')
+        ipt = file('/etc/sysconfig/iptables', 'wt')
     rules = "".join(tempRules)
     rules = rules.replace('--dport 22', '--dport ' + sshInput)
     ipt.write(rules)
